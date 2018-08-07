@@ -44,8 +44,8 @@ func NewWithSchedule(function FunctionMeta, params []Param, schedule Schedule) *
 }
 
 // IsDue returns a boolean indicating whether the task should execute or not
-func (task *Task) IsDue() bool {
-	timeNow := time.Now()
+func (task *Task) IsDue(simTime *time.Time) bool {
+	timeNow := *simTime
 	return timeNow == task.NextRun || timeNow.After(task.NextRun)
 }
 

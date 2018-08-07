@@ -9,8 +9,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/rakanalh/scheduler/storage"
-	"github.com/rakanalh/scheduler/task"
+	"github.com/toasterlint/scheduler/storage"
+	"github.com/toasterlint/scheduler/task"
 )
 
 // Scheduler is used to schedule tasks. It holds information about those tasks
@@ -20,10 +20,11 @@ type Scheduler struct {
 	stopChan     chan bool
 	tasks        map[task.ID]*task.Task
 	taskStore    storeBridge
+	timeSource   *time.Time
 }
 
 // New will return a new instance of the Scheduler struct.
-func New(store storage.TaskStore) Scheduler {
+func New(store storage.TaskStore, simTime *time.Time) Scheduler {
 	funcRegistry := task.NewFuncRegistry()
 	return Scheduler{
 		funcRegistry: funcRegistry,
@@ -33,6 +34,7 @@ func New(store storage.TaskStore) Scheduler {
 			store:        store,
 			funcRegistry: funcRegistry,
 		},
+		timeSource: simTime,
 	}
 }
 
@@ -194,7 +196,7 @@ func (scheduler *Scheduler) persistRegisteredTasks() error {
 
 func (scheduler *Scheduler) runPending() {
 	for _, task := range scheduler.tasks {
-		if task.IsDue() {
+		if task.IsDue(scheduler.timeSource) {
 			go task.Run()
 
 			if !task.IsRecurring {

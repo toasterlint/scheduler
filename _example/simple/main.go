@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/rakanalh/scheduler"
-	"github.com/rakanalh/scheduler/storage"
+	"github.com/toasterlint/scheduler"
+	"github.com/toasterlint/scheduler/storage"
 )
 
 func TaskWithoutArgs() {

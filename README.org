@@ -1,5 +1,5 @@
 * Go Task Scheduler
-[[https://travis-ci.org/rakanalh/scheduler][https://img.shields.io/travis/rakanalh/scheduler/master.svg?style=flat-square]] [[http://codecov.io/github/rakanalh/scheduler?branch=master][http://codecov.io/github/rakanalh/scheduler/coverage.svg?branch=master]] [[https://godoc.org/github.com/rakanalh/scheduler][https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square]] [[https://github.com/rakanalh/scheduler/blob/master/LICENSE.txt][https://img.shields.io/badge/License-MIT-orange.svg?style=flat-square]]
+Modified from Rakanalh's original scheduler to allow for a time.Time object to be passed in to allow for the use with Simulated times
 
 
 
