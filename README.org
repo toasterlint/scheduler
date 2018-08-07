@@ -23,7 +23,7 @@ go get github.com/rakanalh/scheduler
 Instantiate a scheduler as follows:
 
 #+BEGIN_SRC go
-s := scheduler.New(storage)
+s := scheduler.New(storage, *time)
 #+END_SRC
 
 GTS currently supports 2 kinds of storages:
