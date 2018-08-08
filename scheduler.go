@@ -55,7 +55,7 @@ func (scheduler *Scheduler) RunAt(time time.Time, function task.Function, params
 
 // RunAfter executes function once after a specific duration has elapsed.
 func (scheduler *Scheduler) RunAfter(duration time.Duration, function task.Function, params ...task.Param) (task.ID, error) {
-	return scheduler.RunAt(time.Now().Add(duration), function, params...)
+	return scheduler.RunAt(scheduler.timeSource.Add(duration), function, params...)
 }
 
 // RunEvery will schedule function to be executed every time the duration has elapsed.
